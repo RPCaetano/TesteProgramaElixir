@@ -1,0 +1,135 @@
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Stone Renata Caetano</title>
+
+<style>
+#products{
+
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2%;
+    display: flex;
+}
+#shopping{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2%;
+    display: block;
+}
+
+.product-single{
+    
+    width: 20;
+    padding: 0 70px;
+}
+h3{
+    padding: 2%;
+    color:red
+  
+}
+
+img{
+width: 50px;
+height: 50px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+    <h3>Produtos:</h3>
+<div id='products'>
+
+
+</div>
+<h3>Carrinho:</h3> 
+<div id='shopping'>
+  
+ 
+    
+</div>
+
+<script>
+    const items =[
+{
+id:0,
+name:'Produto1',
+img:'imagem.png',
+amount:0
+},
+{
+id:1,
+name:'Produto2',
+img:'imagem.png',
+amount:0
+},
+{    
+id:2,
+name:'Produto3',
+img:'imagem.png',
+amount:0
+},
+{
+id:3,
+name:'Produto4',
+img:'imagem.png',
+amount:0
+},
+     ]
+
+startShop = () => {
+    var containerProducts = document.getElementById('products');
+    items.map((val)=>{
+        containerProducts.innerHTML +=`
+
+        <div class= "product-single">
+            <img src ='`+val.img+`'/>
+            <p>`+val.name+`</p>
+            <a key = '`+val.id+`' href='#'> Comprar</a>
+        </div>
+        
+          
+        `;
+    })
+   
+}
+startShop();
+
+updateShopping = ()=>{
+
+ var containerShopping = document.getElementById('shopping');
+  containerShopping.innerHTML='';
+    items.map((val)=>{
+        if (val.amount > 0){
+         containerShopping.innerHTML+=`
+
+ <p>`+val.name+` || quantidade:`+val.amount+`</p>
+  <hr>
+       `;
+    }
+})
+   }
+
+
+    
+
+var links = document.getElementsByTagName('a');
+
+for (var i = 0; i < links.length; i++){
+    links[i].addEventListener("click",function(){
+        let key = this.getAttribute('key');
+        items[key].amount++;
+        updateShopping();
+        return false;
+    })
+   
+}
+
+
+</script>
+</body>
+</html>
